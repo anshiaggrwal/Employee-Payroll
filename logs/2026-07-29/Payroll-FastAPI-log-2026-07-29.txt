@@ -54,3 +54,7 @@
 2026-07-29 20:08:39,634 | INFO | Attendance ETL Pipeline Completed.
 2026-07-29 20:08:39,855 | INFO | Spark Session Closed.
 2026-07-29 20:08:39,855 | INFO | ETL Pipeline Completed Successfully
+2026-07-29 23:35:19,210 | INFO | Department 'Banking' created successfully.
+2026-07-29 23:36:43,226 | INFO | Department ID 10 updated successfully.
+2026-07-29 23:37:08,829 | INFO | Department ID 10 deleted successfully.
+2026-07-29 23:40:24,525 | INFO | Payroll created for Employee ID 101.

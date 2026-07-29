@@ -22,12 +22,6 @@ class PayrollCreate(BaseModel):
         description="Example: July-2026"
     )
 
-    basic_salary: float = Field(
-        ...,
-        gt=0,
-        le=10000000,
-        description="Basic salary must be greater than 0."
-    )
 
     bonus_amount: float = Field(
         default=0,
@@ -39,12 +33,6 @@ class PayrollCreate(BaseModel):
         default=0,
         ge=0,
         le=1000000
-    )
-
-    net_salary: float = Field(
-        ...,
-        ge=0,
-        le=10000000
     )
 
     @field_validator("payroll_month")
@@ -60,23 +48,6 @@ class PayrollCreate(BaseModel):
 
         return value.title()
 
-    @model_validator(mode="after")
-    def validate_salary(self):
-
-        calculated_salary = (
-            self.basic_salary
-            + self.bonus_amount
-            - self.deductions
-        )
-
-        if self.net_salary != calculated_salary:
-            raise ValueError(
-                "Net salary must be equal to "
-                "Basic Salary + Bonus - Deductions."
-            )
-
-        return self
-
 
 class PayrollUpdate(BaseModel):
 
@@ -84,12 +55,6 @@ class PayrollUpdate(BaseModel):
         ...,
         min_length=3,
         max_length=20
-    )
-
-    basic_salary: float = Field(
-        ...,
-        gt=0,
-        le=10000000
     )
 
     bonus_amount: float = Field(
@@ -104,34 +69,11 @@ class PayrollUpdate(BaseModel):
         le=1000000
     )
 
-    net_salary: float = Field(
-        ...,
-        ge=0,
-        le=10000000
-    )
-
     @field_validator("payroll_month")
     @classmethod
     def validate_payroll_month(cls, value: str):
 
         return value.strip().title()
-
-    @model_validator(mode="after")
-    def validate_salary(self):
-
-        calculated_salary = (
-            self.basic_salary
-            + self.bonus_amount
-            - self.deductions
-        )
-
-        if self.net_salary != calculated_salary:
-            raise ValueError(
-                "Net salary must be equal to "
-                "Basic Salary + Bonus - Deductions."
-            )
-
-        return self
 
 
 class PayrollResponse(BaseModel):

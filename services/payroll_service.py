@@ -56,13 +56,21 @@ def add_payroll(
                 detail="Payroll already exists for this payroll month."
             )
 
+        basic_salary = employee.basic_salary
+
+        net_salary = (
+            basic_salary
+            + payroll.bonus_amount
+            - payroll.deductions
+        )
+
         new_payroll = Payroll(
             employee_id=payroll.employee_id,
             payroll_month=payroll.payroll_month,
-            basic_salary=payroll.basic_salary,
+            basic_salary=basic_salary,
             bonus_amount=payroll.bonus_amount,
             deductions=payroll.deductions,
-            net_salary=payroll.net_salary
+            net_salary=net_salary
         )
 
         create_payroll(
@@ -172,11 +180,24 @@ def modify_payroll(
                 detail="Payroll already exists for this payroll month."
             )
 
+        employee = get_employee_by_id(
+            existing_payroll.employee_id,
+            db
+        )
+
+        basic_salary = employee.basic_salary
+
+        net_salary = (
+            basic_salary
+            + payroll.bonus_amount
+            - payroll.deductions
+        )
+
         existing_payroll.payroll_month = payroll.payroll_month
-        existing_payroll.basic_salary = payroll.basic_salary
+        existing_payroll.basic_salary = basic_salary
         existing_payroll.bonus_amount = payroll.bonus_amount
         existing_payroll.deductions = payroll.deductions
-        existing_payroll.net_salary = payroll.net_salary
+        existing_payroll.net_salary = net_salary
 
         update_payroll(db)
 
