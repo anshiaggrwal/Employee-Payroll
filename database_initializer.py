@@ -8,21 +8,12 @@ from utilities.logger_config import (
     exception_logger
 )
 from models.department_model import Department
-from models.role_model import Role
 from models.employee_model import Employee
 from models.attendance_model import Attendance
-from models.leave_model import LeaveRequest
-from models.project_model import Project
-from models.employee_project_model import EmployeeProject
-from models.task_model import Task
-from models.salary_model import Salary
 from models.payroll_model import Payroll
 
 
 def create_tables():
-    """
-    Creates all tables if they do not exist.
-    """
 
     try:
 
@@ -64,10 +55,6 @@ def create_tables():
 
 
 def drop_tables():
-    """
-    Drops all tables.
-    """
-
     try:
 
         application_logger.info("Dropping database tables...")

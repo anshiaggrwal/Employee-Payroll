@@ -1,0 +1,56 @@
+2026-07-29 18:30:34,907 | INFO | ETL Pipeline Started
+2026-07-29 18:30:34,908 | INFO | Employee ETL Pipeline Started.
+2026-07-29 18:30:34,908 | INFO | Reading employee CSV file.
+2026-07-29 18:30:39,773 | INFO | Employee CSV loaded successfully. Total Records : 26
+2026-07-29 18:30:39,773 | INFO | Transforming employee data.
+2026-07-29 18:30:39,961 | INFO | Spark Session Closed.
+2026-07-29 18:45:37,986 | INFO | ETL Pipeline Started
+2026-07-29 18:45:37,987 | INFO | Employee ETL Pipeline Started.
+2026-07-29 18:45:37,987 | INFO | Reading employee CSV file.
+2026-07-29 18:45:41,992 | INFO | Employee CSV loaded successfully. Total Records : 26
+2026-07-29 18:45:41,992 | INFO | Transforming employee data.
+2026-07-29 18:45:42,297 | INFO | Employee transformation completed.
+2026-07-29 18:45:42,298 | INFO | Validating employee records.
+2026-07-29 18:45:43,134 | INFO | Valid Records : 26
+2026-07-29 18:45:43,549 | INFO | Rejected Records : 0
+2026-07-29 18:45:43,549 | INFO | Saving employee output files.
+2026-07-29 19:59:51,540 | INFO | Creating database tables...
+2026-07-29 19:59:55,726 | INFO | Database initialization completed.
+2026-07-29 20:03:58,422 | INFO | Creating database tables...
+2026-07-29 20:03:58,733 | INFO | All database tables created successfully.
+2026-07-29 20:03:58,733 | INFO | Database initialization completed.
+2026-07-29 20:04:16,810 | INFO | ETL Pipeline Started
+2026-07-29 20:04:16,810 | INFO | Employee ETL Pipeline Started.
+2026-07-29 20:04:16,810 | INFO | Reading employee CSV file.
+2026-07-29 20:04:19,262 | INFO | Employee CSV loaded successfully. Total Records : 26
+2026-07-29 20:04:19,262 | INFO | Transforming employee data.
+2026-07-29 20:04:19,358 | INFO | Employee transformation completed.
+2026-07-29 20:04:19,358 | INFO | Validating employee records.
+2026-07-29 20:04:19,845 | INFO | Valid Records : 26
+2026-07-29 20:04:20,071 | INFO | Rejected Records : 0
+2026-07-29 20:04:20,071 | INFO | Loading Employee Data into Database.
+2026-07-29 20:08:34,370 | INFO | ETL Pipeline Started
+2026-07-29 20:08:34,371 | INFO | Employee ETL Pipeline Started.
+2026-07-29 20:08:34,371 | INFO | Reading employee CSV file.
+2026-07-29 20:08:36,561 | INFO | Employee CSV loaded successfully. Total Records : 26
+2026-07-29 20:08:36,561 | INFO | Transforming employee data.
+2026-07-29 20:08:36,653 | INFO | Employee transformation completed.
+2026-07-29 20:08:36,653 | INFO | Validating employee records.
+2026-07-29 20:08:37,111 | INFO | Valid Records : 26
+2026-07-29 20:08:37,321 | INFO | Rejected Records : 0
+2026-07-29 20:08:37,321 | INFO | Loading Employee Data into Database.
+2026-07-29 20:08:38,600 | INFO | Employee Data Loaded Successfully.
+2026-07-29 20:08:38,600 | INFO | Employee ETL Pipeline Completed.
+2026-07-29 20:08:38,600 | INFO | Attendance ETL Pipeline Started.
+2026-07-29 20:08:38,600 | INFO | Reading attendance CSV file.
+2026-07-29 20:08:38,811 | INFO | Attendance CSV Loaded Successfully. Total Records : 26
+2026-07-29 20:08:38,811 | INFO | Transforming attendance data.
+2026-07-29 20:08:38,830 | INFO | Attendance transformation completed.
+2026-07-29 20:08:38,830 | INFO | Validating attendance records.
+2026-07-29 20:08:39,161 | INFO | Valid Records : 26
+2026-07-29 20:08:39,361 | INFO | Rejected Records : 0
+2026-07-29 20:08:39,361 | INFO | Loading Attendance Data into Database.
+2026-07-29 20:08:39,634 | INFO | Attendance Loaded Successfully.
+2026-07-29 20:08:39,634 | INFO | Attendance ETL Pipeline Completed.
+2026-07-29 20:08:39,855 | INFO | Spark Session Closed.
+2026-07-29 20:08:39,855 | INFO | ETL Pipeline Completed Successfully

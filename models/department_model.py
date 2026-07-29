@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
+from models import attendance_model, employee_model, payroll_model
 
 from database import Base
 
@@ -8,9 +9,17 @@ class Department(Base):
 
     __tablename__ = "departments"
 
-    department_id = Column(Integer, primary_key=True, autoincrement=True)
+    department_id = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True
+    )
 
-    department_name = Column(String(100), unique=True, nullable=False)
+    department_name = Column(
+        String(100),
+        unique=True,
+        nullable=False
+    )
 
     employees = relationship(
         "Employee",

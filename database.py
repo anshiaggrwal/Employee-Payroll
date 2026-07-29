@@ -5,7 +5,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import URL
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Load environment variables
 load_dotenv()
 
 DATABASE_URL = URL.create(
@@ -33,9 +32,6 @@ Base = declarative_base()
 
 
 def get_database():
-    """
-    Returns database session.
-    """
 
     database = SessionLocal()
 
@@ -44,3 +40,6 @@ def get_database():
 
     finally:
         database.close()
+
+if __name__ == "__main__":
+    get_database()

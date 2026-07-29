@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey
 from sqlalchemy.orm import relationship
+from models import attendance_model, department_model, payroll_model
 
 from database import Base
 
@@ -8,26 +9,46 @@ class Employee(Base):
 
     __tablename__ = "employees"
 
-    employee_id = Column(Integer, primary_key=True, autoincrement=True)
+    employee_id = Column(
+        Integer,
+        primary_key=True
+    )
 
-    employee_name = Column(String(100), nullable=False)
+    employee_name = Column(
+        String(100),
+        nullable=False
+    )
 
-    age = Column(Integer)
-
-    email = Column(String(100), unique=True)
-
-    phone = Column(String(15), unique=True)
-
-    status = Column(String(20), default="ACTIVE")
+    email = Column(
+        String(100),
+        unique=True,
+        nullable=False
+    )
 
     department_id = Column(
         Integer,
-        ForeignKey("departments.department_id")
+        ForeignKey("departments.department_id"),
+        nullable=False
     )
 
-    role_id = Column(
-        Integer,
-        ForeignKey("roles.role_id")
+    designation = Column(
+        String(100),
+        nullable=False
+    )
+
+    date_of_joining = Column(
+        Date,
+        nullable=False
+    )
+
+    basic_salary = Column(
+        Float,
+        nullable=False
+    )
+
+    employment_status = Column(
+        String(20),
+        default="Active"
     )
 
     department = relationship(
@@ -35,36 +56,17 @@ class Employee(Base):
         back_populates="employees"
     )
 
-    role = relationship(
-        "Role",
-        back_populates="employees"
-    )
-
     attendance = relationship(
         "Attendance",
-        back_populates="employee"
+        back_populates="employee",
+        cascade="all, delete-orphan"
     )
 
-    leaves = relationship(
-        "LeaveRequest",
-        back_populates="employee"
-    )
-
-    payrolls = relationship(
+    payroll = relationship(
         "Payroll",
-        back_populates="employee"
-    )
-
-    tasks = relationship(
-        "Task",
-        back_populates="employee"
-    )
-
-    projects = relationship(
-        "EmployeeProject",
-        back_populates="employee"
+        back_populates="employee",
+        cascade="all, delete-orphan"
     )
 
     def __repr__(self):
-
         return f"<Employee {self.employee_name}>"
