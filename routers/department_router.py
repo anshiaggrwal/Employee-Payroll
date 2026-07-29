@@ -1,185 +1,62 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from database import get_db
 
 from schemas.department_schema import (
     DepartmentCreate,
     DepartmentUpdate
 )
 
-from services.department_api_service import (
-    add_department_api,
-    search_department_api,
-    update_department_api,
-    delete_department_api,
-    display_all_departments_api
+from services.department_service import (
+    add_department,
+    fetch_all_departments,
+    fetch_department,
+    modify_department,
+    remove_department
 )
 
-from exceptions.custom_exception import (
-    ValidationException,
-    RecordNotFoundException,
-    DatabaseException
-)
-
-router = APIRouter(
+department_router = APIRouter(
     prefix="/departments",
     tags=["Department"]
 )
 
 
-# ==========================================
-# Add Department
-# ==========================================
-
-@router.post(
-    "/",
-    status_code=status.HTTP_201_CREATED
-)
-def add_department(
-    department: DepartmentCreate
+@department_router.post("/")
+def create_department(
+    department: DepartmentCreate,
+    db: Session = Depends(get_db)
 ):
-
-    try:
-
-        result = add_department_api(
-            department.department_name
-        )
-
-        return {
-            "message": "Department Added Successfully.",
-            "department": result
-        }
-
-    except ValidationException as e:
-
-        raise HTTPException(
-            status_code=400,
-            detail=str(e)
-        )
-
-    except DatabaseException as e:
-
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
+    return add_department(department, db)
 
 
-# ==========================================
-# Search Department
-# ==========================================
-
-@router.get("/{department_id}")
-def search_department(
-    department_id: int
+@department_router.get("/")
+def get_all_departments(
+    db: Session = Depends(get_db)
 ):
-
-    try:
-
-        department = search_department_api(
-            department_id
-        )
-
-        return department
-
-    except RecordNotFoundException as e:
-
-        raise HTTPException(
-            status_code=404,
-            detail=str(e)
-        )
+    return fetch_all_departments(db)
 
 
-# ==========================================
-# Display All Departments
-# ==========================================
-
-@router.get("/")
-def display_all_departments():
-
-    return display_all_departments_api()
-
-
-# ==========================================
-# Update Department
-# ==========================================
-
-@router.put("/{department_id}")
-def update_department(
-
+@department_router.get("/{department_id}")
+def get_department(
     department_id: int,
-
-    department: DepartmentUpdate
-
+    db: Session = Depends(get_db)
 ):
-
-    try:
-
-        result = update_department_api(
-
-            department_id,
-
-            department.department_name
-
-        )
-
-        return {
-
-            "message":
-                "Department Updated Successfully.",
-
-            "department":
-                result
-
-        }
-
-    except ValidationException as e:
-
-        raise HTTPException(
-
-            status_code=400,
-
-            detail=str(e)
-
-        )
-
-    except RecordNotFoundException as e:
-
-        raise HTTPException(
-
-            status_code=404,
-
-            detail=str(e)
-
-        )
+    return fetch_department(department_id, db)
 
 
-# ==========================================
-# Delete Department
-# ==========================================
+@department_router.put("/{department_id}")
+def update_department(
+    department_id: int,
+    department: DepartmentUpdate,
+    db: Session = Depends(get_db)
+):
+    return modify_department(department_id, department, db)
 
-@router.delete("/{department_id}")
+
+@department_router.delete("/{department_id}")
 def delete_department(
-    department_id: int
+    department_id: int,
+    db: Session = Depends(get_db)
 ):
-
-    try:
-
-        delete_department_api(
-            department_id
-        )
-
-        return {
-
-            "message":
-                "Department Deleted Successfully."
-
-        }
-
-    except RecordNotFoundException as e:
-
-        raise HTTPException(
-
-            status_code=404,
-
-            detail=str(e)
-
-        )
+    return remove_department(department_id, db)

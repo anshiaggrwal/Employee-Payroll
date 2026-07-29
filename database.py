@@ -31,7 +31,7 @@ SessionLocal = sessionmaker(
 Base = declarative_base()
 
 
-def get_database():
+def get_db():
 
     database = SessionLocal()
 
@@ -42,4 +42,4 @@ def get_database():
         database.close()
 
 if __name__ == "__main__":
-    get_database()
+    get_db()
