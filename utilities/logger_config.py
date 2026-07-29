@@ -1,42 +1,87 @@
-import os
 import logging
+import os
 from datetime import datetime
 
-LOG_DIR = "logs"
-os.makedirs(LOG_DIR, exist_ok=True)
 
-today = datetime.now().strftime("%Y-%m-%d")
+PROJECT_NAME = "Payroll-FastAPI"
 
-application_log = os.path.join(LOG_DIR, f"application_{today}.log")
-exception_log = os.path.join(LOG_DIR, f"exception_{today}.log")
+current_date = datetime.now().strftime("%Y-%m-%d")
+
+daily_log_folder = os.path.join(
+    "logs",
+    current_date
+)
+
+os.makedirs(
+    daily_log_folder,
+    exist_ok=True
+)
+
+log_file_name = (
+    f"{PROJECT_NAME}-log-{current_date}.txt"
+)
+
+exception_file_name = (
+    f"{PROJECT_NAME}-exception-{current_date}.txt"
+)
+
+log_file_path = os.path.join(
+    daily_log_folder,
+    log_file_name
+)
+
+exception_file_path = os.path.join(
+    daily_log_folder,
+    exception_file_name
+)
 
 
-def application(message):
+application_logger = logging.getLogger(
+    "application_logger"
+)
 
-    logger = logging.getLogger("application_logger")
-    logger.setLevel(logging.INFO)
+application_logger.setLevel(logging.INFO)
 
-    if not logger.handlers:
-        file_handler = logging.FileHandler(application_log)
-        formatter = logging.Formatter(
-            "%(asctime)s | %(levelname)s | %(message)s"
-        )
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
 
-    logger.info(message)
+exception_logger = logging.getLogger(
+    "exception_logger"
+)
 
-def exception(message):
+exception_logger.setLevel(logging.ERROR)
 
-    logger = logging.getLogger("exception_logger")
-    logger.setLevel(logging.ERROR)
 
-    if not logger.handlers:
-        file_handler = logging.FileHandler(exception_log)
-        formatter = logging.Formatter(
-            "%(asctime)s | %(levelname)s | %(message)s"
-        )
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
+log_formatter = logging.Formatter(
+    "%(asctime)s | %(levelname)s | %(message)s"
+)
 
-    logger.error(message)
+
+application_file_handler = logging.FileHandler(
+    log_file_path,
+    mode="a",
+    encoding="utf-8"
+)
+
+application_file_handler.setLevel(logging.INFO)
+application_file_handler.setFormatter(log_formatter)
+
+
+exception_file_handler = logging.FileHandler(
+    exception_file_path,
+    mode="a",
+    encoding="utf-8"
+)
+
+exception_file_handler.setLevel(logging.ERROR)
+exception_file_handler.setFormatter(log_formatter)
+
+
+if not application_logger.handlers:
+    application_logger.addHandler(
+        application_file_handler
+    )
+
+
+if not exception_logger.handlers:
+    exception_logger.addHandler(
+        exception_file_handler
+    )

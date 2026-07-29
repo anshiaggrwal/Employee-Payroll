@@ -1,0 +1,27 @@
+employee_id,employee_name,email,department,designation,date_of_joining,basic_salary,employment_status
+101,Anjali,anjali@gmail.com,Information Technology,Python Developer,15-01-2025,50000,Active
+102,Anshi Agarwal,anshi.agarwal@gmail.com,Human Resources,HR Executive,10-02-2025,40000,Active
+103,Ayushi Bindal,ayushi.bindal@gmail.com,Finance,Accountant,20-11-2024,45000,Active
+104,Bomma Revanth Sai,revanth.sai@gmail.com,Information Technology,Data Engineer,05-03-2025,60000,Active
+105,Chelikani Harshal,harshal@gmail.com,Sales,Sales Executive,01-04-2025,38000,Active
+106,Chhaya Sharma,chhaya@gmail.com,Information Technology,Frontend Developer,18-06-2024,48000,Active
+107,Gaurav Joshi,gaurav@gmail.com,Information Technology,Backend Developer,25-07-2024,55000,Active
+108,Harshita,harshita@gmail.com,Quality Assurance,Software Tester,12-08-2024,42000,Active
+109,Ishita Sharma,ishita@gmail.com,Human Resources,Talent Acquisition Executive,05-09-2024,41000,Active
+110,Lavanya Pulani,lavanya@gmail.com,Finance,Financial Analyst,17-10-2024,52000,Active
+111,Mehak Tyagi,mehak@gmail.com,Marketing,Digital Marketing Executive,08-01-2025,39000,Active
+112,Nidhi Rawat,nidhi@gmail.com,Information Technology,Cloud Engineer,21-02-2025,65000,Active
+113,Priya Sharma,priya@gmail.com,Administration,Administrative Executive,11-03-2025,36000,Active
+114,Ritika Sharma,ritika@gmail.com,Sales,Business Development Executive,28-04-2025,43000,Active
+115,Sachin Kumar Choubey,sachin@gmail.com,Information Technology,DevOps Engineer,16-05-2025,68000,Active
+116,Samarth Thakur,samarth@gmail.com,Information Technology,Java Developer,09-06-2025,54000,Active
+117,Samriddhi Kapoor,samriddhi@gmail.com,Finance,Payroll Executive,22-07-2025,44000,Active
+118,Shagun Raina,shagun@gmail.com,Quality Assurance,Automation Tester,14-08-2025,51000,Active
+119,Shaurya Khare,shaurya@gmail.com,Operations,Operations Executive,30-09-2025,40000,Active
+120,Shruti Singh,shruti@gmail.com,Customer Support,Customer Support Executive,12-11-2025,35000,Active
+121,Siddharth Mandal,siddharth@gmail.com,Information Technology,AI Engineer,05-01-2026,72000,Active
+122,Cheshta Garg,cheshta@gmail.com,Marketing,Content Marketing Specialist,19-02-2026,46000,Active
+123,Bhoomika Goyal,bhoomika@gmail.com,Human Resources,Learning and Development Executive,10-03-2026,43000,Active
+124,Dimple Samota,dimple@gmail.com,Information Technology,Data Analyst,21-04-2026,52000,Active
+125,Sami,sami@gmail.com,Information Technology,Data Analyst,21-04-2026,50000,Active
+126,Souritri,souritri@gmail.com,Information Technology,Data Analyst,21-04-2026,40000,Active
