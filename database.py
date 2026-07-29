@@ -1,126 +1,46 @@
-"""
-==========================================================
-File        : database.py
-Project     : Enterprise Employee Project and Payroll
-              Management System
-Description : Database configuration using SQLAlchemy ORM
-==========================================================
-"""
+import os
 
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.engine import URL
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-USERNAME = "root"
-PASSWORD = ""          
-HOST = "localhost"
-PORT = "3006"
-DATABASE = "employee_payroll_db"
+# Load environment variables
+load_dotenv()
 
-DATABASE_URL = ("mysql+pymysql://root:Revanth%40123@localhost:3006/employee_payroll_db"
+DATABASE_URL = URL.create(
+    drivername="mysql+pymysql",
+    username=os.getenv("DATABASE_USERNAME"),
+    password=os.getenv("DATABASE_PASSWORD"),
+    host=os.getenv("DATABASE_HOST"),
+    port=int(os.getenv("DATABASE_PORT", 3306)),
+    database=os.getenv("DATABASE_NAME")
+)
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    connect_args={"ssl": {}}
+)
+
+SessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False
 )
 
 Base = declarative_base()
 
-try:
 
-    engine = create_engine(
-
-        DATABASE_URL,
-
-        echo=True,
-
-        future=True
-
-    )
-
-    print("\n" + "=" * 60)
-    print("Database Engine Created Successfully")
-    print("=" * 60)
-
-except SQLAlchemyError as error:
-
-    print("\nUnable to create database engine.")
-
-    print(f"Database Error : {error}")
-
-    raise
-
-except Exception as error:
-
-    print("\nUnexpected Error While Creating Engine.")
-
-    print(f"Error : {error}")
-
-    raise
-
-finally:
-
-    print("\nDatabase Engine Initialization Completed.")
-
-try:
-
-    SessionLocal = sessionmaker(
-
-        bind=engine,
-
-        autoflush=False,
-
-        autocommit=False,
-
-        expire_on_commit=False
-
-    )
-
-    print("\nSession Factory Created Successfully.")
-
-except SQLAlchemyError as error:
-
-    print("\nUnable to Create Session Factory.")
-
-    print(f"Database Error : {error}")
-
-    raise
-
-except Exception as error:
-
-    print("\nUnexpected Error.")
-
-    print(error)
-
-    raise
-
-finally:
-
-    print("\nSession Factory Initialization Completed.")
-
-
-def get_session():
+def get_database():
     """
-    Returns a SQLAlchemy session object.
+    Returns database session.
     """
 
-    session = None
+    database = SessionLocal()
 
     try:
+        yield database
 
-        session = SessionLocal()
-
-        return session
-
-    except SQLAlchemyError as error:
-
-        print("\nUnable to Create Database Session.")
-
-        print(error)
-
-        raise
-
-    except Exception as error:
-
-        print("\nUnexpected Error.")
-
-        print(error)
-
-        raise
+    finally:
+        database.close()
